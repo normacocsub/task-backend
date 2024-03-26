@@ -11,7 +11,7 @@ class Comentario extends Model
     protected $table = 'comentarios';
 
     protected $fillable = [
-        'nombre', 'descripcion', 'empleado_id'
+        'titulo', 'descripcion', 'empleado_id'
     ];
 
     public function empleado()
@@ -21,6 +21,6 @@ class Comentario extends Model
 
     public function adjuntos()
     {
-        return $this->belongsToMany(Adjuntos::class, 'comentario_adjuntos', 'comentario_id', 'adjunto_id');
+        return $this->belongsToMany(Adjuntos::class, 'comentario_adjuntos', 'comentario_id', 'adjuntos_id');
     }
 }

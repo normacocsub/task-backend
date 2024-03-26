@@ -20,4 +20,9 @@ class User extends Model
     {
         return $this->belongsTo(Empleado::class, 'empleado_id');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Rol::class, 'user_rols', 'rol_id', 'user_id');
+    }
 }

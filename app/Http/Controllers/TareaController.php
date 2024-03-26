@@ -18,7 +18,7 @@ class TareaController extends Controller
     public function create(Request $request)
     {
         $response = $this->tareaService->create($request);
-        $this->returnResponse($response);
+        return $this->returnResponse($response);
     }
 
     public function obtenerTarea($id)
@@ -44,6 +44,13 @@ class TareaController extends Controller
     public function actualizarEstado(Request $request)
     {
         $response = $this->tareaService->actualizarEstado($request['estado'], $request['id']);
+        if ($response) return $this->returnResponse($response);
+        return response()->json(['error' => 'No se encuentra la tarea'], 404);
+    }
+
+    public function eliminarTarea($id)
+    {
+        $response = $this->tareaService->eliminarTarea($id);
         if ($response) return $this->returnResponse($response);
         return response()->json(['error' => 'No se encuentra la tarea'], 404);
     }

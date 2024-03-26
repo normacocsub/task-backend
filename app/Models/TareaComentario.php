@@ -9,7 +9,7 @@ class TareaComentario extends Model
 {
     use HasFactory;
     protected $table = 'tarea_comentarios';
-    public function comentario()
+    public function comentarios()
     {
         return $this->belongsTo(Comentario::class, 'comentario_id');
     }

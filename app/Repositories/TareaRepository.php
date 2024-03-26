@@ -2,10 +2,11 @@
 namespace App\Repositories;
 use App\Models\Tarea;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TareaRepository
 {
-    public function create(Request $request): Tarea
+    public function create(Request $request)
     {
         $tarea = new Tarea();
         $tarea->fill($request->only(['nombre', 'descripcion', 'estado', 'empleado_id']));
@@ -13,9 +14,12 @@ class TareaRepository
         return $tarea;
     }
 
-    public function obtenerTarea(string $id)
+    public function obtenerTarea($id)
     {
-        return Tarea::with('comentarios')->find($id);
+        $tarea = Tarea::with('comentarios')->find($id);
+        Log::info($tarea);
+        if(!$tarea) return null;
+        return $tarea;
     }
 
     public function obtenerTareas()
@@ -38,6 +42,12 @@ class TareaRepository
         return $tarea;
     }
 
-    // falta eliminar
+   public function eliminarTarea($id)
+   {
+       $tarea = Tarea::query()->find($id);
+       if(!$tarea) return null;
+       $tarea->delete();
+       return $tarea;
+   }
 
 }

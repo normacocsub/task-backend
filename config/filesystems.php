@@ -34,6 +34,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
             'throw' => false,
+            'size_limit' => 10240,
         ],
 
         'public' => [
@@ -42,6 +43,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
+            'size_limit' => 10240,
         ],
 
         's3' => [

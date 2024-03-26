@@ -15,8 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('tarea_id');
             $table->unsignedBigInteger('comentario_id');
-            $table->foreign('tarea_id')->references('id')->on('tarea');
-            $table->foreign('comentario_id')->references('id')->on('comentario');
+            $table->foreign('tarea_id')->references('id')->on('tareas');
+            $table->foreign('comentario_id')->references('id')->on('comentarios');
             $table->timestamps();
         });
     }
