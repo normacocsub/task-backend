@@ -26,6 +26,6 @@ class UserService
         $user = $this->userRepository->login($request);
         if (!$user) return response()->json(['error'=> 'Credenciales incorrectas'], 401);
         $user->makeHidden('hash');
-        return response()->json(['message' => 'Inicio de sesión exitoso', 'user' => $user], 200);
+        return $user;
     }
 }
